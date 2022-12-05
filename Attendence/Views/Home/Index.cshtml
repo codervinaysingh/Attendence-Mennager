@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Attendence.Models.Register> 
+
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome To Attedence Managment</h1>
+    <form method="post">
+        <div class="text-center">
+            <label for="ContactNumber">Contact Number:</label>
+         <input type="text" name="ContactNumber" value="" />
+         <input type="submit" name="RequestType" value="Search" class="submit" asp-action="Index" />
+        </div>
+        
+      <div class="text-center m-5">
+         <label>&nbsp;</label>
+         
+      </div>
+    </form>
+    <form method="post">
+        <div class="text-center">
+            @if (Model!=null)
+            {
+              @foreach (var item in Model)
+           {
+                @if (item.status == 0)
+                    {
+                <label style="color:red" name="StudentName" value="@item.StudentName">@item.StudentName</label>
+                <input style="color:red ; display:none" name="Id" value="@item.Id"  readonly/>
+                <input type="submit" name="" value="Attend" class="submit" asp-action="Attend"/>
+                    }
+                    @if (item.status != 0)
+
+                    {
+                          <label style="color:forestgreen" name="" value="">@item.msg</label>
+                    }
+                }
+             
+            }
+          
+            </div>
+    </form>
+</div>
